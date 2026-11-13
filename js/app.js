@@ -17,7 +17,6 @@ function applyTheme(theme, persist){
   if (themeToggle){
     const dark = theme === 'dark';
     themeToggle.setAttribute('aria-pressed', String(dark));
-    themeToggle.setAttribute('aria-label', dark ? 'Usar tema claro' : 'Usar tema escuro');
   }
 }
 applyTheme(root.dataset.theme === 'dark' ? 'dark' : 'light', false);

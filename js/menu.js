@@ -13,7 +13,10 @@ function setMenu(open, {returnFocus = true} = {}){
   mobileMenuButton?.setAttribute('aria-label', open && isCompact ? 'Fechar menu' : 'Abrir menu');
   if (backdrop) backdrop.hidden = !(open && isCompact);
   document.body.classList.toggle('menu-open', open && isCompact);
-  if (open && isCompact) sidebar.querySelector('a, summary')?.focus();
+  if (open && isCompact){
+    void sidebar.offsetWidth; // aplica o estilo aberto antes de focar
+    sidebar.querySelector('a, summary')?.focus();
+  }
   else if (isCompact && returnFocus && sidebar.contains(document.activeElement)) mobileMenuButton?.focus();
 }
 
