@@ -279,3 +279,18 @@
   .ruler-bar{grid-column:1/-1;grid-row:2}
   .ruler-state{text-align:right}
 }
+
+/* ---------- Imagens de acervo: um só tratamento, em tons de aço ---------- */
+.part-figure,.sheet-figure{margin:0;display:grid;gap:10px;align-content:end}
+.part-figure img,.sheet-figure img{width:100%;object-fit:cover;filter:grayscale(1) contrast(1.06);background:var(--tone)}
+.part-figure img{aspect-ratio:4/3}
+.part-figure figcaption,.sheet-figure figcaption{font-family:var(--font-display);font-size:var(--step-small);opacity:.85}
+.sheet:has(.sheet-figure){grid-template-rows:auto 1fr}
+.sheet:has(.sheet-figure) h4,.sheet:has(.sheet-figure) p{grid-column:1}
+.sheet-figure{grid-column:2;grid-row:1 / span 2;align-content:start}
+.sheet-figure img{aspect-ratio:16/10}
+@media (max-width:900px){
+  .sheet-figure{grid-column:1;grid-row:auto}
+}
+.footer-credits{margin-top:clamp(56px,7vw,96px);font-family:var(--font-display);font-size:var(--step-small);opacity:.85}
+.footer-credits ul{margin:10px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px 24px}
