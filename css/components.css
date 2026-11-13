@@ -294,3 +294,24 @@
 }
 .footer-credits{margin-top:clamp(56px,7vw,96px);font-family:var(--font-display);font-size:var(--step-small);opacity:.85}
 .footer-credits ul{margin:10px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px 24px}
+
+/* ---------- Movimento ---------- */
+@media (prefers-reduced-motion:no-preference){
+  /* Entrada das partes de cada seção (js/motion.js) */
+  .motion-ready .reveal{opacity:0;transform:translateY(24px);transition:opacity 560ms var(--ease-out),transform 640ms var(--ease-out)}
+  .motion-ready .reveal.is-in{opacity:1;transform:none}
+  .motion-ready .part-figure.reveal img{transform:scale(1.08);transition:transform 1400ms var(--ease-out)}
+  .motion-ready .part-figure.reveal.is-in img{transform:none}
+
+  /* Assinatura: as pastas da abertura sobem em sequência ao carregar */
+  @keyframes folder-in{from{opacity:0;transform:translateY(48px)}to{opacity:1;transform:none}}
+  @keyframes hero-in{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+  .hero h1,.hero-lead,.hero-actions{animation:hero-in 700ms var(--ease-out) both}
+  .hero-lead{animation-delay:80ms}
+  .hero-actions{animation-delay:160ms}
+  .folder{animation:folder-in 760ms var(--ease-out) both}
+  .folder:nth-child(1){animation-delay:240ms}
+  .folder:nth-child(2){animation-delay:320ms}
+  .folder:nth-child(3){animation-delay:400ms}
+  .folder:nth-child(4){animation-delay:480ms}
+}
