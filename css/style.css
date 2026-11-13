@@ -163,11 +163,6 @@ strong,b{font-weight:600}
   *,*::before,*::after{transition-duration:1ms!important;animation-duration:1ms!important;animation-iteration-count:1!important}
 }
 
-@media print{
-  .site-header,.sidebar,.reading-progress,.search-dialog,.menu-backdrop,.skip-link,.hero-actions{display:none!important}
-  .content{margin:0;padding:0}
-  body{background:#fff;color:#000}
-}
 
 /* Logotipo da Softcomp: grafite no claro, clareado no escuro */
 .sidebar-logo{width:140px;height:auto;opacity:.9}

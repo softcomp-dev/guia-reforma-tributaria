@@ -315,3 +315,35 @@
   .folder:nth-child(3){animation-delay:400ms}
   .folder:nth-child(4){animation-delay:480ms}
 }
+
+/* ---------- Impressão e PDF ---------- */
+@page{size:A4;margin:16mm 14mm}
+@media print{
+  :root,[data-theme="dark"]{--ground:#fff;--paper:#fff;--tone:#F1F1F0;--tone-strong:#E2E3E2;--ink:#111;--ink-soft:#444;--graphite:#fff;--graphite-deep:#fff;--on-dark:#111;--steel:#999}
+  body{background:#fff;color:#111;font-size:11pt}
+  .site-header,.sidebar,.menu-backdrop,.reading-progress,.skip-link,.search-dialog,.hero-actions,.folders,.ruler,.footer-message .button{display:none!important}
+  .content{margin:0;padding:0}
+  .motion-ready .reveal,.reveal{opacity:1!important;transform:none!important}
+  .hero,.part-intro,.section,.site-footer{padding:0;min-height:0;background:#fff!important;color:#111!important}
+  .hero{display:block;padding-bottom:12mm}
+  .hero h1{font-size:30pt}
+  .part-intro{break-before:page;display:grid;grid-template-columns:1fr 1fr;gap:8mm;padding:0 0 8mm;border-top:3pt solid #C59A3D}
+  .part-intro h2{font-size:28pt;margin-top:6mm}
+  .part-figure img{max-height:60mm}
+  .section{padding:8mm 0}
+  .section-title{font-size:18pt}
+  .lead,.part-intro p{font-size:12pt}
+  .facts dt,.years .year,.pair-col h4,.sheet h4,.footer-title,.grand-total strong{font-size:18pt}
+  .sheet{position:static!important;min-height:0!important;background:#fff!important;color:#111!important;border-top:1.5pt solid #999;padding:5mm 0}
+  .sheet-figure img{max-height:45mm}
+  .notice{background:#fff;border:1.5pt solid #C59A3D}
+  .menu-band{background:#fff;color:#111}
+  .chain .chain-result,.receipt-total,.grand-total{background:#fff!important;color:#111!important;border-top:1.5pt solid #111}
+  .receipt{clip-path:none;border:1pt solid #999}
+  .receipt,.years li,.chain li,.sheet,.pair-col,.notice,.calculator,.interactive-checklist label,.runin-list li,.menu-sheet li{break-inside:avoid}
+  .section-title,h4{break-after:avoid}
+  .sources a::after{content:" (" attr(href) ")";font-weight:400;font-size:8pt;word-break:break-all}
+  .footer-brand img{filter:none;width:50mm;margin:0}
+  .footer-credits{opacity:1}
+  .two-col>.col-head>.section-title{max-width:none}
+}
