@@ -1,40 +1,91 @@
-const overlay = document.getElementById('searchOverlay');
+const dialog = document.getElementById('searchOverlay');
 const openBtn = document.getElementById('searchOpen');
 const closeBtn = document.getElementById('searchClose');
 const input = document.getElementById('searchInput');
 const results = document.getElementById('searchResults');
+const status = document.getElementById('searchStatus');
 
-const index = [...document.querySelectorAll('section[id]')].map(section=>({
-  id: section.id,
-  title: section.dataset.title || section.querySelector('h2')?.textContent || section.id,
-  text: section.innerText.replace(/\s+/g,' ').trim()
-}));
+/* Busca sem acento e sem diferença de maiúsculas: "aliquota" acha "alíquota". */
+const fold = text => text.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+const escapeHTML = text => text.replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+
+let index = null;
+function buildIndex(){
+  index = [...document.querySelectorAll('main section[id]')].map(section => {
+    const text = section.textContent.replace(/\s+/g, ' ').trim();
+    const title = section.dataset.title || section.querySelector('h2, h3')?.textContent.trim() || section.id;
+    return {id: section.id, title, text, foldedTitle: fold(title), foldedText: fold(text)};
+  });
+}
 
 function openSearch(){
-  overlay.hidden = false;
-  setTimeout(()=>input.focus(),30);
+  if (!index) buildIndex();
+  if (!dialog.open) dialog.showModal();
+  input.focus();
+  input.select();
 }
 function closeSearch(){
-  overlay.hidden = true;
+  if (dialog.open) dialog.close();
+}
+dialog.addEventListener('close', () => {
   input.value = '';
   results.innerHTML = '';
-}
-openBtn.addEventListener('click',openSearch);
-closeBtn.addEventListener('click',closeSearch);
-overlay.addEventListener('click',e=>{if(e.target===overlay)closeSearch()});
-document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'&&!overlay.hidden)closeSearch();
-  if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();openSearch();}
+  status.textContent = '';
+  openBtn?.focus();
 });
 
-input.addEventListener('input',()=>{
-  const q = input.value.trim().toLowerCase();
-  if(q.length<2){results.innerHTML='<p>Digite pelo menos 2 caracteres.</p>';return;}
-  const matches = index.filter(item=>item.title.toLowerCase().includes(q)||item.text.toLowerCase().includes(q)).slice(0,20);
-  results.innerHTML = matches.length ? matches.map(item=>{
-    const pos = item.text.toLowerCase().indexOf(q);
-    const snippet = pos>=0 ? item.text.slice(Math.max(0,pos-60),pos+140) : item.text.slice(0,180);
-    return `<a href="#${item.id}"><strong>${item.title}</strong><small>${snippet}...</small></a>`;
-  }).join('') : '<p>Nenhum resultado encontrado.</p>';
-  results.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeSearch));
+openBtn?.addEventListener('click', openSearch);
+closeBtn?.addEventListener('click', closeSearch);
+dialog.addEventListener('click', event => { if (event.target === dialog) closeSearch(); });
+document.addEventListener('keydown', event => {
+  if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k'){
+    event.preventDefault();
+    openSearch();
+  }
+});
+
+function snippetFor(item, query){
+  const pos = item.foldedText.indexOf(query);
+  const start = Math.max(0, pos - 60);
+  const raw = pos >= 0 ? item.text.slice(start, pos + 140) : item.text.slice(0, 180);
+  const prefix = start > 0 ? '…' : '';
+  if (pos < 0) return escapeHTML(raw) + '…';
+  const rel = pos - start;
+  return prefix + escapeHTML(raw.slice(0, rel)) + '<mark>' + escapeHTML(raw.slice(rel, rel + query.length)) + '</mark>' + escapeHTML(raw.slice(rel + query.length)) + '…';
+}
+
+input.addEventListener('input', () => {
+  const query = fold(input.value.trim());
+  if (query.length < 2){
+    results.innerHTML = '';
+    status.textContent = query.length ? 'Digite pelo menos 2 letras.' : '';
+    return;
+  }
+  const matches = index
+    .filter(item => item.foldedTitle.includes(query) || item.foldedText.includes(query))
+    .sort((a, b) => Number(b.foldedTitle.includes(query)) - Number(a.foldedTitle.includes(query)))
+    .slice(0, 20);
+  results.innerHTML = matches.map(item =>
+    `<li><a href="#${item.id}"><strong>${escapeHTML(item.title)}</strong><span>${snippetFor(item, query)}</span></a></li>`
+  ).join('');
+  status.textContent = matches.length
+    ? `${matches.length} ${matches.length === 1 ? 'resultado' : 'resultados'}`
+    : 'Nenhum resultado. Tente outra palavra, como "crédito" ou "2027".';
+});
+
+results.addEventListener('click', event => {
+  if (event.target.closest('a')) closeSearch();
+});
+
+/* Setas para cima e para baixo percorrem os resultados. */
+dialog.addEventListener('keydown', event => {
+  if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return;
+  const items = [...results.querySelectorAll('a')];
+  if (!items.length) return;
+  event.preventDefault();
+  const current = items.indexOf(document.activeElement);
+  let next;
+  if (event.key === 'ArrowDown') next = current < items.length - 1 ? current + 1 : 0;
+  else next = current > 0 ? current - 1 : (current === 0 ? -1 : items.length - 1);
+  (next === -1 ? input : items[next]).focus();
 });

@@ -9,6 +9,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Patrick+Hand&display=swap" rel="stylesheet">
+  <script>
+    /* Aplica o tema antes de pintar a página, sem flash: usa a escolha salva ou o tema do sistema. */
+    (function(){
+      var saved = null;
+      try { saved = localStorage.getItem('guideTheme'); } catch (e) {}
+      var dark = saved ? saved === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+    })();
+  </script>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/components.css">
 </head>
@@ -25,10 +34,10 @@
     </a>
 
     <div class="header-actions">
-      <button class="icon-button" id="searchOpen" aria-label="Abrir pesquisa">🔎</button>
-      <button class="icon-button" id="themeToggle" aria-label="Alternar tema">🌙</button>
-      <button class="icon-button" id="printButton" aria-label="Imprimir">🖨️</button>
-      <button class="menu-button" id="mobileMenuButton" aria-label="Abrir menu">☰</button>
+      <button class="icon-button" id="searchOpen" type="button" aria-label="Abrir pesquisa (Ctrl+K)" aria-haspopup="dialog"><span aria-hidden="true">🔎</span></button>
+      <button class="icon-button" id="themeToggle" type="button" aria-label="Usar tema escuro" aria-pressed="false"><span aria-hidden="true">🌙</span></button>
+      <button class="icon-button" id="printButton" type="button" aria-label="Imprimir ou salvar em PDF" data-print><span aria-hidden="true">🖨️</span></button>
+      <button class="menu-button" id="mobileMenuButton" type="button" aria-label="Abrir menu" aria-controls="sidebar" aria-expanded="false"><span aria-hidden="true">☰</span></button>
     </div>
   </header>
 
@@ -93,6 +102,7 @@
       </details>
     </nav>
   </aside>
+  <div class="menu-backdrop" id="menuBackdrop" hidden></div>
 
   <main class="content">
     <section class="hero" id="inicio" data-title="Início">
@@ -102,7 +112,7 @@
         <p class="hero-lead">Entenda conceitos, cálculos, Imposto Seletivo e regimes específicos de forma simples, visual e organizada.</p>
         <div class="hero-actions">
           <a class="button primary" href="#parte-1">Começar agora</a>
-          <button class="button secondary" id="heroPrint">Salvar em PDF</button>
+          <button class="button secondary" id="heroPrint" type="button" data-print>Salvar em PDF</button>
         </div>
       </div>
       <div class="hero-visual" aria-hidden="true">
@@ -337,14 +347,15 @@
       <div class="section-heading"><span>6</span><h2>Simulador didático</h2></div>
       <div class="calculator">
         <div class="form-grid">
-          <label>Valor da operação<input id="valorOperacao" type="number" value="10000" step="0.01"></label>
-          <label>ICMS ou ISS<input id="tributoPrincipal" type="number" value="1800" step="0.01"></label>
-          <label>PIS/Cofins<input id="pisCofins" type="number" value="925" step="0.01"></label>
-          <label>Outras exclusões<input id="outrasExclusoes" type="number" value="0" step="0.01"></label>
-          <label>Alíquota CBS (%)<input id="aliqCbs" type="number" value="0.9" step="0.1"></label>
-          <label>Alíquota IBS (%)<input id="aliqIbs" type="number" value="0.1" step="0.1"></label>
+          <label>Valor da operação (R$)<input id="valorOperacao" type="text" inputmode="decimal" autocomplete="off" value="10.000,00"></label>
+          <label>ICMS ou ISS (R$)<input id="tributoPrincipal" type="text" inputmode="decimal" autocomplete="off" value="1.800,00"></label>
+          <label>PIS/Cofins (R$)<input id="pisCofins" type="text" inputmode="decimal" autocomplete="off" value="925,00"></label>
+          <label>Outras exclusões (R$)<input id="outrasExclusoes" type="text" inputmode="decimal" autocomplete="off" value="0,00"></label>
+          <label>Alíquota CBS (%)<input id="aliqCbs" type="text" inputmode="decimal" autocomplete="off" value="0,90"></label>
+          <label>Alíquota IBS (%)<input id="aliqIbs" type="text" inputmode="decimal" autocomplete="off" value="0,10"></label>
         </div>
-        <div class="result-grid">
+        <p class="calc-warning" id="calcAviso" role="alert" hidden>As exclusões passam do valor da operação; a base foi considerada zero.</p>
+        <div class="result-grid" aria-live="polite">
           <div><small>Exclusões</small><strong id="totalExclusoes">R$ 2.725,00</strong></div>
           <div><small>Base ajustada</small><strong id="baseAjustada">R$ 7.275,00</strong></div>
           <div><small>CBS</small><strong id="valorCbs">R$ 65,48</strong></div>
@@ -570,15 +581,15 @@
     </footer>
   </main>
 
-  <div class="search-overlay" id="searchOverlay" hidden>
-    <div class="search-dialog">
-      <div class="search-header">
-        <input id="searchInput" type="search" placeholder="Pesquisar no guia..." autocomplete="off">
-        <button class="icon-button" id="searchClose" aria-label="Fechar pesquisa">✕</button>
-      </div>
-      <div id="searchResults" class="search-results"></div>
+  <dialog class="search-dialog" id="searchOverlay" aria-labelledby="searchLabel">
+    <div class="search-header">
+      <label class="visually-hidden" id="searchLabel" for="searchInput">Pesquisar no guia</label>
+      <input id="searchInput" type="search" placeholder="Pesquisar no guia…" autocomplete="off" aria-describedby="searchStatus">
+      <button class="icon-button" id="searchClose" type="button" aria-label="Fechar pesquisa"><span aria-hidden="true">✕</span></button>
     </div>
-  </div>
+    <p class="search-status" id="searchStatus" role="status" aria-live="polite"></p>
+    <ul id="searchResults" class="search-results"></ul>
+  </dialog>
 
   <script src="js/app.js"></script>
   <script src="js/menu.js"></script>
