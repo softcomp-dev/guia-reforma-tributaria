@@ -163,21 +163,6 @@ strong,b{font-weight:600}
   *,*::before,*::after{transition-duration:1ms!important;animation-duration:1ms!important;animation-iteration-count:1!important}
 }
 
-/* ---------- Compatibilidade temporária com os componentes antigos ----------
-   Os nomes abaixo são usados por components.css enquanto ele não é reescrito. */
-:root,[data-theme="dark"]{
-  --bg:var(--ground);--surface:var(--paper);--surface-alt:var(--tone);--text:var(--ink);--muted:var(--ink-soft);
-  --navy:var(--ink);--blue:var(--graphite);--green:var(--gold);--green-dark:var(--gold-ink);--orange:var(--gold);
-  --border:var(--tone-strong);--shadow:none
-}
-.section{padding:72px var(--gutter)}.section.alt{background:var(--tone)}
-.section-heading{margin-bottom:32px}.section-heading span{display:none}.section-heading h2{font-size:var(--step-head)}
-.lead{max-width:var(--measure);margin:0 0 32px;font-size:var(--step-lead)}
-.part-intro{padding:56px var(--gutter);background:var(--graphite);color:var(--on-dark)}.part-intro>span{display:none}.part-intro h2{font-size:var(--step-head)}
-.hero{padding:96px var(--gutter);background:var(--graphite-deep);color:var(--on-dark)}.hero h1{font-size:var(--step-display);margin:0 0 24px}.hero-lead{font-size:var(--step-lead);max-width:var(--measure)}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}.hero-visual,.eyebrow{display:none}
-.overview-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:0}.overview-grid a{padding:24px var(--gutter);background:var(--tone);text-decoration:none}.overview-grid span{display:none}.overview-grid strong,.overview-grid small{display:block}
-@media (max-width:720px){.overview-grid{grid-template-columns:1fr 1fr}}
-
 @media print{
   .site-header,.sidebar,.reading-progress,.search-dialog,.menu-backdrop,.skip-link,.hero-actions{display:none!important}
   .content{margin:0;padding:0}
