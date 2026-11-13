@@ -231,6 +231,17 @@
         <h3 class="section-title">A transição, ano a ano</h3>
         <p class="lead">Até 2032 os dois sistemas convivem. O cronograma está na Emenda Constitucional 132/2023 (artigos 125 a 129 do ADCT).</p>
       </div>
+      <div class="ruler" id="regua" hidden>
+        <fieldset class="ruler-years">
+          <legend>Escolha o ano</legend>
+          <div class="ruler-options"><label><input type="radio" name="anoRegua" value="2026" checked><span>2026</span></label><label><input type="radio" name="anoRegua" value="2027"><span>2027</span></label><label><input type="radio" name="anoRegua" value="2028"><span>2028</span></label><label><input type="radio" name="anoRegua" value="2029"><span>2029</span></label><label><input type="radio" name="anoRegua" value="2030"><span>2030</span></label><label><input type="radio" name="anoRegua" value="2031"><span>2031</span></label><label><input type="radio" name="anoRegua" value="2032"><span>2032</span></label><label><input type="radio" name="anoRegua" value="2033"><span>2033</span></label></div>
+        </fieldset>
+        <div class="ruler-panel">
+          <p class="ruler-summary" id="reguaResumo" aria-live="polite"></p>
+          <ul class="ruler-rows"><li data-tributo="pis"><span class="ruler-name">PIS e Cofins</span><span class="ruler-bar" aria-hidden="true"><span class="ruler-fill"></span></span><span class="ruler-state"></span></li><li data-tributo="ipi"><span class="ruler-name">IPI</span><span class="ruler-bar" aria-hidden="true"><span class="ruler-fill"></span></span><span class="ruler-state"></span></li><li data-tributo="icms"><span class="ruler-name">ICMS</span><span class="ruler-bar" aria-hidden="true"><span class="ruler-fill"></span></span><span class="ruler-state"></span></li><li data-tributo="iss"><span class="ruler-name">ISS</span><span class="ruler-bar" aria-hidden="true"><span class="ruler-fill"></span></span><span class="ruler-state"></span></li><li data-tributo="cbs"><span class="ruler-name">CBS</span><span class="ruler-bar" aria-hidden="true"><span class="ruler-fill"></span></span><span class="ruler-state"></span></li><li data-tributo="ibs"><span class="ruler-name">IBS</span><span class="ruler-bar" aria-hidden="true"><span class="ruler-fill"></span></span><span class="ruler-state"></span></li><li data-tributo="is"><span class="ruler-name">Imposto Seletivo</span><span class="ruler-bar" aria-hidden="true"><span class="ruler-fill"></span></span><span class="ruler-state"></span></li></ul>
+          <p class="ruler-note">As barras mostram o peso de cada tributo naquele ano em relação ao seu papel pleno, não a alíquota.</p>
+        </div>
+      </div>
       <ol class="years">
         <li>
           <strong class="year">2026</strong>
@@ -706,5 +717,6 @@
   <script src="js/app.js"></script>
   <script src="js/menu.js"></script>
   <script src="js/search.js"></script>
+  <script src="js/transicao.js"></script>
 </body>
 </html>
