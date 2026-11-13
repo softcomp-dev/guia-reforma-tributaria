@@ -347,3 +347,10 @@
   .footer-credits{opacity:1}
   .two-col>.col-head>.section-title{max-width:none}
 }
+
+/* Blocos empilhados no celular e tablet: espaço claro entre um bloco e o
+   título do seguinte, para a última linha de um não parecer rótulo do outro */
+@media (max-width:900px){
+  .pair{gap:40px}
+  .sheets{gap:40px}
+}
