@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Guia visual e educativo da Reforma Tributária: conceitos, cálculo do IBS e CBS, Imposto Seletivo e regimes específicos.">
+  <meta name="theme-color" content="#123b70">
+  <title>Guia Visual da Reforma Tributária</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Patrick+Hand&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <div class="reading-progress" id="readingProgress"></div>
+
+  <header class="site-header">
+    <a class="brand" href="#inicio">
+      <span class="brand-mark">💡</span>
+      <span>
+        <strong>Guia Fácil</strong>
+        <small>Reforma Tributária</small>
+      </span>
+    </a>
+
+    <div class="header-actions">
+      <button class="icon-button" id="searchOpen" aria-label="Abrir pesquisa">🔎</button>
+      <button class="icon-button" id="themeToggle" aria-label="Alternar tema">🌙</button>
+      <button class="icon-button" id="printButton" aria-label="Imprimir">🖨️</button>
+      <button class="menu-button" id="mobileMenuButton" aria-label="Abrir menu">☰</button>
+    </div>
+  </header>
+
+  <aside class="sidebar" id="sidebar">
+    <nav class="sidebar-nav" aria-label="Menu principal">
+      <a class="sidebar-home" href="#inicio">Visão geral</a>
+
+      <details open>
+        <summary>Parte 1 — Conceitos</summary>
+        <a href="#parte-1">Abertura</a>
+        <a href="#visao-geral">Visão geral</a>
+        <a href="#porque-reforma">Por que existe</a>
+        <a href="#mudancas">O que muda</a>
+        <a href="#ibs">IBS</a>
+        <a href="#cbs">CBS</a>
+        <a href="#is-conceito-inicial">Imposto Seletivo</a>
+        <a href="#transicao">Transição</a>
+        <a href="#impactos">Impactos</a>
+        <a href="#documentos">Documentos</a>
+        <a href="#regimes-intro">Simples, MEI e regimes</a>
+        <a href="#glossario">Termos técnicos</a>
+      </details>
+
+      <details>
+        <summary>Parte 2 — Cálculo IBS/CBS</summary>
+        <a href="#parte-2">Abertura</a>
+        <a href="#logica-calculo">Lógica simples</a>
+        <a href="#base-calculo">Base de cálculo</a>
+        <a href="#antes-calcular">Antes de calcular</a>
+        <a href="#exemplo-mercadoria">Venda de mercadoria</a>
+        <a href="#exemplo-servico">Prestação de serviço</a>
+        <a href="#simulador">Simulador</a>
+        <a href="#resumo-calculo">Resumo</a>
+      </details>
+
+      <details>
+        <summary>Parte 3 — Imposto Seletivo</summary>
+        <a href="#parte-3">Abertura</a>
+        <a href="#is-o-que-e">O que é</a>
+        <a href="#is-fumigenos">Fumígenos</a>
+        <a href="#is-alcoolicas">Bebidas alcoólicas</a>
+        <a href="#is-acucaradas">Bebidas açucaradas</a>
+        <a href="#is-veiculos">Veículos e afins</a>
+        <a href="#is-minerais">Bens minerais</a>
+        <a href="#is-apostas">Apostas</a>
+        <a href="#is-mapa">Mapa geral</a>
+        <a href="#is-checklist">Checklist</a>
+      </details>
+
+      <details>
+        <summary>Parte 4 — Regimes Específicos</summary>
+        <a href="#parte-4">Abertura</a>
+        <a href="#regimes-o-que-sao">O que são</a>
+        <a href="#simples-nacional">Simples Nacional</a>
+        <a href="#mei">MEI</a>
+        <a href="#setores-especificos">Setores específicos</a>
+        <a href="#regimes-diferenciados">Regimes diferenciados</a>
+        <a href="#areas-atencao">Áreas de atenção</a>
+        <a href="#setores-acompanhar">Setores para acompanhar</a>
+        <a href="#checklist-regimes">Checklist</a>
+        <a href="#resumo-regimes">Resumo</a>
+      </details>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <section class="hero" id="inicio" data-title="Início">
+      <div class="hero-copy">
+        <span class="eyebrow">GUIA VISUAL E EDUCATIVO</span>
+        <h1>Guia Fácil da Reforma Tributária</h1>
+        <p class="hero-lead">Entenda conceitos, cálculos, Imposto Seletivo e regimes específicos de forma simples, visual e organizada.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#parte-1">Começar agora</a>
+          <button class="button secondary" id="heroPrint">Salvar em PDF</button>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-map">🗺️</div>
+        <div class="hero-pin">📍</div>
+      </div>
+    </section>
+
+    <section class="overview-grid">
+      <a href="#parte-1"><span>1</span><strong>Conceitos</strong><small>Fundamentos do novo modelo</small></a>
+      <a href="#parte-2"><span>2</span><strong>Cálculo</strong><small>IBS e CBS passo a passo</small></a>
+      <a href="#parte-3"><span>3</span><strong>Imposto Seletivo</strong><small>Categorias no radar</small></a>
+      <a href="#parte-4"><span>4</span><strong>Regimes específicos</strong><small>Setores e situações especiais</small></a>
+    </section>
+
+    <section class="part-intro part-one" id="parte-1" data-title="Parte 1 — Conceitos">
+      <span>PARTE 1</span>
+      <div>
+        <h2>Fundamentos da Reforma Tributária</h2>
+        <p>Visão conceitual do novo modelo de tributação sobre o consumo.</p>
+      </div>
+    </section>
+
+    <section class="section" id="visao-geral" data-title="Visão geral da Reforma">
+      <div class="section-heading"><span>1</span><h2>Visão geral da Reforma Tributária</h2></div>
+      <p class="lead">A Reforma Tributária tem como objetivo simplificar o sistema atual, tornar os impostos mais justos e estimular o crescimento do país.</p>
+      <div class="mindmap">
+        <article><h3>Simplificação</h3><p>Menos impostos, regras mais claras e menos burocracia.</p></article>
+        <article><h3>Justiça fiscal</h3><p>Cobrança mais justa, com menos distorções e privilégios.</p></article>
+        <div class="mindmap-center">REFORMA<br>TRIBUTÁRIA</div>
+        <article><h3>Transparência</h3><p>Mais clareza na cobrança e no destino dos recursos.</p></article>
+        <article><h3>Desenvolvimento</h3><p>Ambiente de negócios mais competitivo e seguro.</p></article>
+        <article><h3>Foco no consumo</h3><p>Novo modelo de tributação sobre bens e serviços.</p></article>
+      </div>
+    </section>
+
+    <section class="section alt" id="porque-reforma" data-title="Por que a Reforma existe">
+      <div class="section-heading"><span>2</span><h2>Por que a Reforma Tributária existe?</h2></div>
+      <p class="lead">O sistema atual é complexo, caro e cheio de distorções.</p>
+      <div class="cards four">
+        <article><div class="card-icon">🌀</div><h3>Excesso de impostos</h3><p>Muitos tributos e regras diferentes em cada estado e município.</p></article>
+        <article><div class="card-icon">⏱️</div><h3>Alta burocracia</h3><p>Muito tempo e dinheiro gastos para cumprir obrigações acessórias.</p></article>
+        <article><div class="card-icon">💰</div><h3>Cumulatividade</h3><p>O imposto é cobrado várias vezes ao longo da cadeia produtiva.</p></article>
+        <article><div class="card-icon">⚖️</div><h3>Ambiente desigual</h3><p>Concorrência desleal e insegurança jurídica.</p></article>
+      </div>
+      <div class="callout success">A Reforma vem para corrigir isso.</div>
+    </section>
+
+    <section class="section" id="mudancas" data-title="O que muda">
+      <div class="section-heading"><span>3</span><h2>O que muda no sistema atual</h2></div>
+      <div class="comparison">
+        <article>
+          <h3>Como é hoje</h3>
+          <ul><li>PIS</li><li>COFINS</li><li>ICMS</li><li>ISS</li><li>IPI</li><li>Outros tributos e contribuições</li></ul>
+        </article>
+        <div class="comparison-arrow">➜</div>
+        <article>
+          <h3>Como fica</h3>
+          <ul><li>IBS</li><li>CBS</li><li>Imposto Seletivo</li><li>Menos burocracia</li><li>Mais transparência</li><li>Regras mais uniformes</li></ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section alt" id="ibs" data-title="IBS">
+      <div class="section-heading"><span>4</span><h2>IBS explicado visualmente</h2></div>
+      <p class="lead">O IBS é o novo tributo que substituirá ICMS e ISS, unificando parte da cobrança sobre bens e serviços.</p>
+      <div class="cards three">
+        <article><h3>Onde atua?</h3><p>Estados e Municípios.</p></article>
+        <article><h3>O que tributa?</h3><p>Bens, serviços e direitos ligados ao consumo.</p></article>
+        <article><h3>Características</h3><p>Não cumulativo, cobrança no destino e gestão compartilhada.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="cbs" data-title="CBS">
+      <div class="section-heading"><span>5</span><h2>CBS explicada visualmente</h2></div>
+      <p class="lead">A CBS é o novo tributo federal que substituirá PIS, COFINS e parte do IPI.</p>
+      <div class="cards three">
+        <article><h3>Quem cobra?</h3><p>Governo Federal.</p></article>
+        <article><h3>O que tributa?</h3><p>Bens, serviços e direitos ligados ao consumo.</p></article>
+        <article><h3>Características</h3><p>Não cumulativa e com tendência a regras mais uniformes.</p></article>
+      </div>
+    </section>
+
+    <section class="section alt" id="is-conceito-inicial" data-title="Imposto Seletivo — conceito">
+      <div class="section-heading"><span>6</span><h2>Imposto Seletivo</h2></div>
+      <p class="lead">Tributo federal voltado a produtos e serviços prejudiciais à saúde ou ao meio ambiente.</p>
+      <div class="cards three">
+        <article><h3>Finalidade</h3><p>Desestimular o consumo de bens e serviços nocivos.</p></article>
+        <article><h3>Onde incide?</h3><p>Produtos e serviços específicos definidos em lei.</p></article>
+        <article><h3>Exemplos</h3><p>Cigarros, bebidas alcoólicas e outros itens específicos.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="transicao" data-title="Transição">
+      <div class="section-heading"><span>7</span><h2>Transição da Reforma</h2></div>
+      <div class="timeline">
+        <article><b>2026</b><h3>Início</h3><p>Criação da CBS e do IBS.</p></article>
+        <article><b>2026–2028</b><h3>Convivência</h3><p>Novo e antigo modelo coexistem.</p></article>
+        <article><b>2029–2032</b><h3>Transição</h3><p>Redução progressiva dos tributos antigos.</p></article>
+        <article><b>2033</b><h3>Novo sistema</h3><p>Novo modelo em pleno vigor.</p></article>
+      </div>
+    </section>
+
+    <section class="section alt" id="impactos" data-title="Impactos">
+      <div class="section-heading"><span>8</span><h2>Impactos na rotina contábil e fiscal</h2></div>
+      <div class="check-grid">
+        <div>✓ Novos tributos no lugar dos atuais.</div>
+        <div>✓ Novas obrigações e informações fiscais.</div>
+        <div>✓ Adequação de sistemas e processos.</div>
+        <div>✓ Mais atenção a créditos.</div>
+        <div>✓ Atualização e capacitação constante.</div>
+      </div>
+    </section>
+
+    <section class="section" id="documentos" data-title="Documentos fiscais">
+      <div class="section-heading"><span>9</span><h2>Documentos fiscais e obrigações</h2></div>
+      <div class="cards four">
+        <article><h3>Novos campos</h3><p>IBS, CBS e novas informações.</p></article>
+        <article><h3>Sistemas emissores</h3><p>Softwares e layouts precisarão de atualização.</p></article>
+        <article><h3>Apuração</h3><p>Mais organização no registro das operações.</p></article>
+        <article><h3>Acompanhamento</h3><p>Regras, layouts e orientações oficiais.</p></article>
+      </div>
+    </section>
+
+    <section class="section alt" id="regimes-intro" data-title="Simples, MEI e regimes">
+      <div class="section-heading"><span>10</span><h2>Simples Nacional, MEI e regimes específicos</h2></div>
+      <p class="lead">Esses regimes exigem atenção porque parte das regras depende de regulamentação e adaptação.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Regime</th><th>O que observar</th><th>Ponto de atenção</th></tr></thead>
+          <tbody>
+            <tr><td>Simples Nacional</td><td>Como se conecta ao novo modelo.</td><td>Nem tudo muda de imediato.</td></tr>
+            <tr><td>MEI</td><td>Orientações específicas e possíveis ajustes.</td><td>Acompanhar regulamentação.</td></tr>
+            <tr><td>Regimes específicos</td><td>Tratamento próprio em determinados setores.</td><td>Regras complementares.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" id="glossario" data-title="Termos técnicos">
+      <div class="section-heading"><span>11</span><h2>Termos técnicos traduzidos</h2></div>
+      <div class="glossary">
+        <article><b>IBS</b><p>Imposto estadual e municipal sobre o consumo.</p></article>
+        <article><b>CBS</b><p>Contribuição federal sobre o consumo.</p></article>
+        <article><b>IVA Dual</b><p>Modelo formado por IBS e CBS.</p></article>
+        <article><b>Não cumulatividade</b><p>Permite compensação de créditos.</p></article>
+        <article><b>Split Payment</b><p>Separação automática do valor do imposto.</p></article>
+        <article><b>Crédito tributário</b><p>Valor aproveitável na compensação.</p></article>
+      </div>
+    </section>
+
+    <section class="part-intro part-two" id="parte-2" data-title="Parte 2 — Cálculo">
+      <span>PARTE 2</span>
+      <div><h2>Cálculo Fácil do IBS e da CBS</h2><p>Entenda a lógica com exemplos simples e passo a passo.</p></div>
+    </section>
+
+    <section class="section alt" id="logica-calculo" data-title="Lógica do cálculo">
+      <div class="section-heading"><span>1</span><h2>A lógica simples do IBS e da CBS</h2></div>
+      <div class="flow">
+        <article><b>1</b><h3>Valor da operação</h3><p>Valor cobrado na venda, prestação ou fornecimento.</p></article>
+        <article><b>2</b><h3>Ajustes da base</h3><p>Veja o que entra e o que não entra na base.</p></article>
+        <article><b>3</b><h3>Base ajustada</h3><p>Valor da operação menos exclusões aplicáveis.</p></article>
+        <article><b>4</b><h3>CBS</h3><p>Base ajustada × alíquota da CBS.</p></article>
+        <article><b>5</b><h3>IBS</h3><p>Base ajustada × alíquota do IBS.</p></article>
+        <article><b>6</b><h3>Total</h3><p>CBS + IBS.</p></article>
+      </div>
+      <blockquote>Primeiro ajuste a base. Depois aplique a alíquota.</blockquote>
+    </section>
+
+    <section class="section" id="base-calculo" data-title="Base de cálculo">
+      <div class="section-heading"><span>2</span><h2>Base de cálculo: o ponto de partida</h2></div>
+      <div class="split">
+        <article class="definition"><h3>O que é?</h3><p>É o valor usado como referência para calcular o tributo.</p></article>
+        <article class="definition"><h3>Por que importa?</h3><p>Se a base estiver errada, o cálculo também ficará errado.</p></article>
+      </div>
+      <div class="formula-strip">
+        <span>Base</span><strong>R$ 10.000,00</strong>
+        <span>Alíquota</span><strong>1%</strong>
+        <span>Tributo</span><strong>R$ 100,00</strong>
+      </div>
+    </section>
+
+    <section class="section alt" id="antes-calcular" data-title="Antes de calcular">
+      <div class="section-heading"><span>3</span><h2>O que observar antes de calcular?</h2></div>
+      <p class="lead">Durante a transição, observe quais tributos antigos incidem na operação.</p>
+      <div class="equation">
+        <span>Valor da operação</span><b>−</b><span>Tributos antigos que não entram na base</span><b>=</b><span>Base ajustada</span>
+      </div>
+      <div class="cards four">
+        <article><h3>ICMS</h3><p>Ligado a mercadorias e algumas prestações.</p></article>
+        <article><h3>ISS</h3><p>Ligado a serviços.</p></article>
+        <article><h3>PIS</h3><p>Contribuição federal do sistema atual.</p></article>
+        <article><h3>Cofins</h3><p>Contribuição federal do sistema atual.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="exemplo-mercadoria" data-title="Exemplo — mercadoria">
+      <div class="section-heading"><span>4</span><h2>Exemplo prático: venda de mercadoria</h2></div>
+      <div class="example-data">
+        <span>Venda: <b>R$ 10.000,00</b></span>
+        <span>ICMS: <b>R$ 1.800,00</b></span>
+        <span>PIS/Cofins: <b>R$ 925,00</b></span>
+        <span>CBS teste: <b>0,9%</b></span>
+        <span>IBS teste: <b>0,1%</b></span>
+      </div>
+      <div class="worked-grid">
+        <article><b>1</b><h3>Base ajustada</h3><p>10.000 − 1.800 − 925</p><strong>R$ 7.275,00</strong></article>
+        <article><b>2</b><h3>CBS</h3><p>7.275 × 0,9%</p><strong>R$ 65,48</strong></article>
+        <article><b>3</b><h3>IBS</h3><p>7.275 × 0,1%</p><strong>R$ 7,28</strong></article>
+        <article><b>4</b><h3>Total</h3><p>65,48 + 7,28</p><strong>R$ 72,76</strong></article>
+      </div>
+    </section>
+
+    <section class="section alt" id="exemplo-servico" data-title="Exemplo — serviço">
+      <div class="section-heading"><span>5</span><h2>Exemplo prático: prestação de serviço</h2></div>
+      <div class="example-data">
+        <span>Serviço: <b>R$ 8.000,00</b></span>
+        <span>ISS: <b>R$ 400,00</b></span>
+        <span>PIS/Cofins: <b>R$ 292,00</b></span>
+        <span>CBS teste: <b>0,9%</b></span>
+        <span>IBS teste: <b>0,1%</b></span>
+      </div>
+      <div class="worked-grid">
+        <article><b>1</b><h3>Base ajustada</h3><p>8.000 − 400 − 292</p><strong>R$ 7.308,00</strong></article>
+        <article><b>2</b><h3>CBS</h3><p>7.308 × 0,9%</p><strong>R$ 65,77</strong></article>
+        <article><b>3</b><h3>IBS</h3><p>7.308 × 0,1%</p><strong>R$ 7,31</strong></article>
+        <article><b>4</b><h3>Total</h3><p>65,77 + 7,31</p><strong>R$ 73,08</strong></article>
+      </div>
+    </section>
+
+    <section class="section" id="simulador" data-title="Simulador">
+      <div class="section-heading"><span>6</span><h2>Simulador didático</h2></div>
+      <div class="calculator">
+        <div class="form-grid">
+          <label>Valor da operação<input id="valorOperacao" type="number" value="10000" step="0.01"></label>
+          <label>ICMS ou ISS<input id="tributoPrincipal" type="number" value="1800" step="0.01"></label>
+          <label>PIS/Cofins<input id="pisCofins" type="number" value="925" step="0.01"></label>
+          <label>Outras exclusões<input id="outrasExclusoes" type="number" value="0" step="0.01"></label>
+          <label>Alíquota CBS (%)<input id="aliqCbs" type="number" value="0.9" step="0.1"></label>
+          <label>Alíquota IBS (%)<input id="aliqIbs" type="number" value="0.1" step="0.1"></label>
+        </div>
+        <div class="result-grid">
+          <div><small>Exclusões</small><strong id="totalExclusoes">R$ 2.725,00</strong></div>
+          <div><small>Base ajustada</small><strong id="baseAjustada">R$ 7.275,00</strong></div>
+          <div><small>CBS</small><strong id="valorCbs">R$ 65,48</strong></div>
+          <div><small>IBS</small><strong id="valorIbs">R$ 7,28</strong></div>
+        </div>
+        <div class="grand-total"><span>Total IBS + CBS</span><strong id="totalIbsCbs">R$ 72,76</strong></div>
+      </div>
+    </section>
+
+    <section class="section alt" id="resumo-calculo" data-title="Resumo do cálculo">
+      <div class="section-heading"><span>7</span><h2>Resumo final do cálculo</h2></div>
+      <div class="check-grid">
+        <div>✓ Comece pelo valor da operação.</div>
+        <div>✓ Veja quais tributos incidem.</div>
+        <div>✓ Ajuste a base.</div>
+        <div>✓ Aplique a CBS.</div>
+        <div>✓ Aplique o IBS.</div>
+        <div>✓ Some e revise.</div>
+      </div>
+    </section>
+
+    <section class="part-intro part-three" id="parte-3" data-title="Parte 3 — Imposto Seletivo">
+      <span>PARTE 3</span>
+      <div><h2>Mapa do Imposto Seletivo</h2><p>Veja quais categorias podem ser impactadas.</p></div>
+    </section>
+
+    <section class="section" id="is-o-que-e" data-title="O que é o Imposto Seletivo">
+      <div class="section-heading"><span>1</span><h2>O que é o Imposto Seletivo?</h2></div>
+      <p class="lead">Tributo federal voltado a categorias que podem gerar impacto à saúde ou ao meio ambiente.</p>
+      <div class="comparison">
+        <article><h3>IBS e CBS</h3><p>Nova base geral da tributação sobre o consumo.</p></article>
+        <div class="comparison-arrow">×</div>
+        <article><h3>Imposto Seletivo</h3><p>Imposto específico para certos produtos e atividades.</p></article>
+      </div>
+    </section>
+
+    <section class="section alt category" id="is-fumigenos" data-title="Produtos fumígenos">
+      <div class="category-heading"><span>Categoria 1</span><h2>Produtos fumígenos</h2><div>🚬</div></div>
+      <div class="cards two">
+        <article><h3>O que entra?</h3><p>Cigarros, charutos, cigarrilhas e produtos ligados ao fumo.</p></article>
+        <article><h3>Por que pode ser impactado?</h3><p>Associação com impacto à saúde.</p></article>
+      </div>
+    </section>
+
+    <section class="section category" id="is-alcoolicas" data-title="Bebidas alcoólicas">
+      <div class="category-heading"><span>Categoria 2</span><h2>Bebidas alcoólicas</h2><div>🍷</div></div>
+      <div class="cards two">
+        <article><h3>Exemplos</h3><p>Cervejas, vinhos, destilados, licores e similares.</p></article>
+        <article><h3>Pontos de atenção</h3><p>Teor alcoólico, categoria, volume de produção e regulamentação.</p></article>
+      </div>
+    </section>
+
+    <section class="section alt category" id="is-acucaradas" data-title="Bebidas açucaradas">
+      <div class="category-heading"><span>Categoria 3</span><h2>Bebidas açucaradas</h2><div>🥤</div></div>
+      <div class="cards two">
+        <article><h3>Exemplos</h3><p>Refrigerantes, bebidas adoçadas e bebidas com adição de açúcar.</p></article>
+        <article><h3>Pontos de atenção</h3><p>Composição, classificação fiscal e regulamentação.</p></article>
+      </div>
+    </section>
+
+    <section class="section category" id="is-veiculos" data-title="Veículos e afins">
+      <div class="category-heading"><span>Categoria 4</span><h2>Veículos, embarcações e aeronaves</h2><div>🚗</div></div>
+      <div class="cards two">
+        <article><h3>Exemplos</h3><p>Carros, motocicletas, barcos e aeronaves.</p></article>
+        <article><h3>Pontos de atenção</h3><p>Emissão, eficiência energética, impacto ambiental e características técnicas.</p></article>
+      </div>
+    </section>
+
+    <section class="section alt category" id="is-minerais" data-title="Bens minerais">
+      <div class="category-heading"><span>Categoria 5</span><h2>Bens minerais</h2><div>⛏️</div></div>
+      <div class="cards two">
+        <article><h3>Exemplos</h3><p>Minérios, petróleo, gás natural e outros bens minerais.</p></article>
+        <article><h3>Pontos de atenção</h3><p>Extração, comercialização, importação e classificação.</p></article>
+      </div>
+    </section>
+
+    <section class="section category" id="is-apostas" data-title="Apostas">
+      <div class="category-heading"><span>Categoria 6</span><h2>Apostas e atividades específicas</h2><div>🎟️</div></div>
+      <div class="cards two">
+        <article><h3>Exemplos</h3><p>Apostas, loterias, concursos de prognóstico e fantasy sport.</p></article>
+        <article><h3>Pontos de atenção</h3><p>Base de cálculo, alíquotas, recolhimento e enquadramento.</p></article>
+      </div>
+    </section>
+
+    <section class="section alt" id="is-mapa" data-title="Mapa geral do IS">
+      <div class="section-heading"><span>7</span><h2>Mapa geral do Imposto Seletivo</h2></div>
+      <div class="sector-grid">
+        <article><h3>Fumígenos</h3><p>Impacto à saúde.</p></article>
+        <article><h3>Bebidas alcoólicas</h3><p>Teor alcoólico e categoria.</p></article>
+        <article><h3>Bebidas açucaradas</h3><p>Composição e classificação.</p></article>
+        <article><h3>Veículos e afins</h3><p>Impacto ambiental.</p></article>
+        <article><h3>Bens minerais</h3><p>Extração e cadeia econômica.</p></article>
+        <article><h3>Apostas</h3><p>Atividade regulada.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="is-checklist" data-title="Checklist do IS">
+      <div class="section-heading"><span>8</span><h2>O que acompanhar</h2></div>
+      <div class="interactive-checklist">
+        <label><input type="checkbox"> Categorias definitivas.</label>
+        <label><input type="checkbox"> Classificação fiscal.</label>
+        <label><input type="checkbox"> Alíquotas aplicáveis.</label>
+        <label><input type="checkbox"> Regras por categoria.</label>
+        <label><input type="checkbox"> Critérios ambientais ou de saúde.</label>
+        <label><input type="checkbox"> Data de início.</label>
+        <label><input type="checkbox"> Forma de cálculo.</label>
+        <label><input type="checkbox"> Documentos fiscais.</label>
+      </div>
+    </section>
+
+    <section class="part-intro part-four" id="parte-4" data-title="Parte 4 — Regimes Específicos">
+      <span>PARTE 4</span>
+      <div><h2>Guia Visual dos Regimes Específicos</h2><p>Regimes, setores e situações que merecem atenção especial.</p></div>
+    </section>
+
+    <section class="section" id="regimes-o-que-sao" data-title="O que são regimes específicos">
+      <div class="section-heading"><span>1</span><h2>O que são regimes específicos?</h2></div>
+      <div class="cards three">
+        <article><h3>Regra geral</h3><p>Caminho padrão da Reforma.</p></article>
+        <article><h3>Regime específico</h3><p>Regra própria para determinado setor, atividade ou operação.</p></article>
+        <article><h3>Regime diferenciado</h3><p>Tratamento especial, redução, alíquota zero ou benefício.</p></article>
+      </div>
+      <blockquote>Nem todo caso entra na Reforma do mesmo jeito.</blockquote>
+    </section>
+
+    <section class="section alt" id="simples-nacional" data-title="Simples Nacional">
+      <div class="section-heading"><span>2</span><h2>Simples Nacional</h2></div>
+      <div class="observe-list">
+        <article><b>1</b><div><h3>Opção pelo regime</h3><p>Acompanhar prazos, regras e possibilidades de escolha.</p></div></article>
+        <article><b>2</b><div><h3>Relação com IBS e CBS</h3><p>Atenção à forma como o novo modelo se conecta ao Simples.</p></div></article>
+        <article><b>3</b><div><h3>Créditos na cadeia</h3><p>Impacto na relação com clientes que tomam crédito.</p></div></article>
+        <article><b>4</b><div><h3>Competitividade</h3><p>O regime escolhido pode influenciar fornecedores e clientes.</p></div></article>
+      </div>
+    </section>
+
+    <section class="section" id="mei" data-title="MEI">
+      <div class="section-heading"><span>3</span><h2>MEI</h2></div>
+      <div class="observe-list">
+        <article><b>1</b><div><h3>Regras simplificadas</h3><p>Tratamento próprio dentro do sistema tributário.</p></div></article>
+        <article><b>2</b><div><h3>Faturamento e enquadramento</h3><p>Acompanhar limites e mudanças de categoria.</p></div></article>
+        <article><b>3</b><div><h3>Relação com IBS e CBS</h3><p>Documentos, operações e relação com clientes.</p></div></article>
+        <article><b>4</b><div><h3>Atualizações futuras</h3><p>Regulamentação e orientações oficiais.</p></div></article>
+      </div>
+    </section>
+
+    <section class="section alt" id="setores-especificos" data-title="Setores específicos">
+      <div class="section-heading"><span>4</span><h2>Setores com regimes específicos</h2></div>
+      <div class="sector-grid">
+        <article><h3>Serviços financeiros</h3><p>Bancos, seguros, previdência e consórcios.</p></article>
+        <article><h3>Imóveis</h3><p>Compra, venda, locação e incorporação.</p></article>
+        <article><h3>Combustíveis</h3><p>Cadeia com regras próprias.</p></article>
+        <article><h3>Planos de saúde</h3><p>Assistência à saúde.</p></article>
+        <article><h3>Bares e hotelaria</h3><p>Alimentação, hospedagem e turismo.</p></article>
+        <article><h3>Transporte coletivo</h3><p>Transporte de passageiros.</p></article>
+        <article><h3>Cooperativas</h3><p>Tratamento conforme a natureza da operação.</p></article>
+        <article><h3>Apostas</h3><p>Regras próprias para determinadas atividades.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="regimes-diferenciados" data-title="Regimes diferenciados">
+      <div class="section-heading"><span>5</span><h2>Regimes diferenciados</h2></div>
+      <div class="cards three">
+        <article><h3>Redução de alíquota</h3><p>Alíquota menor do que a regra geral.</p></article>
+        <article><h3>Alíquota zero</h3><p>Tributação zerada para determinados casos.</p></article>
+        <article><h3>Crédito presumido</h3><p>Regra específica para aproveitamento de crédito.</p></article>
+        <article><h3>Apuração própria</h3><p>Cálculo ou forma de apurar diferente.</p></article>
+        <article><h3>Tratamento por setor</h3><p>Regra especial conforme atividade econômica.</p></article>
+        <article><h3>Tratamento por operação</h3><p>O tipo de operação muda a regra.</p></article>
+      </div>
+    </section>
+
+    <section class="section alt" id="areas-atencao" data-title="Áreas de atenção">
+      <div class="section-heading"><span>6</span><h2>Três áreas que exigem atenção especial</h2></div>
+      <div class="cards three">
+        <article><h3>Serviços financeiros</h3><p>Base, receitas, deduções, apuração e obrigações específicas.</p></article>
+        <article><h3>Imóveis</h3><p>Tipo de operação, base, reduções, deduções e transição.</p></article>
+        <article><h3>Combustíveis</h3><p>Cadeia, monofasia, recolhimento e regras por produto.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="setores-acompanhar" data-title="Setores para acompanhar">
+      <div class="section-heading"><span>7</span><h2>Setores que merecem acompanhamento</h2></div>
+      <div class="cards four">
+        <article><h3>Saúde</h3><p>Serviços, planos, reduções e documentação.</p></article>
+        <article><h3>Educação</h3><p>Serviços educacionais, reduções e enquadramento.</p></article>
+        <article><h3>Transporte</h3><p>Tipo de transporte, operação e documentação.</p></article>
+        <article><h3>Alimentação e hotelaria</h3><p>Serviços, mercadorias e tratamento setorial.</p></article>
+      </div>
+    </section>
+
+    <section class="section alt" id="checklist-regimes" data-title="Checklist dos regimes">
+      <div class="section-heading"><span>8</span><h2>Checklist dos regimes específicos</h2></div>
+      <div class="interactive-checklist two-columns">
+        <label><input type="checkbox"> Está no Simples Nacional?</label>
+        <label><input type="checkbox"> É MEI?</label>
+        <label><input type="checkbox"> A operação pertence a setor específico?</label>
+        <label><input type="checkbox"> Existe regime diferenciado?</label>
+        <label><input type="checkbox"> Existe redução de alíquota?</label>
+        <label><input type="checkbox"> Existe alíquota zero?</label>
+        <label><input type="checkbox"> Existe crédito presumido?</label>
+        <label><input type="checkbox"> Existe apuração própria?</label>
+        <label><input type="checkbox"> Envolve serviços financeiros?</label>
+        <label><input type="checkbox"> Envolve imóveis?</label>
+        <label><input type="checkbox"> Envolve combustíveis?</label>
+        <label><input type="checkbox"> Envolve saúde ou educação?</label>
+        <label><input type="checkbox"> Envolve transporte?</label>
+        <label><input type="checkbox"> Há documentos específicos?</label>
+      </div>
+    </section>
+
+    <section class="section" id="resumo-regimes" data-title="Resumo dos regimes">
+      <div class="section-heading"><span>9</span><h2>Resumo final</h2></div>
+      <div class="layer-flow">
+        <span>regra geral</span><i>→</i><span>regime</span><i>→</i><span>setor</span><i>→</i><span>operação</span><i>→</i><span>regulamentação</span>
+      </div>
+      <blockquote>Antes de dizer “como fica”, veja se existe uma regra específica para aquele caso.</blockquote>
+    </section>
+
+    <footer class="site-footer">
+      <strong>Guia Fácil da Reforma Tributária</strong>
+      <p>Material educativo e visual. Não substitui análise profissional.</p>
+      <a href="#inicio">Voltar ao topo ↑</a>
+    </footer>
+  </main>
+
+  <div class="search-overlay" id="searchOverlay" hidden>
+    <div class="search-dialog">
+      <div class="search-header">
+        <input id="searchInput" type="search" placeholder="Pesquisar no guia..." autocomplete="off">
+        <button class="icon-button" id="searchClose" aria-label="Fechar pesquisa">✕</button>
+      </div>
+      <div id="searchResults" class="search-results"></div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/search.js"></script>
+</body>
+</html>
